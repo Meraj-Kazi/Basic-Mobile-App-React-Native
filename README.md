@@ -1,4 +1,6 @@
-# Basic Mobile App React Native & Expo
+# Basic To-Do App React Native & Expo
+
+Supports iOS & Android.
 
 To run the project -
 
