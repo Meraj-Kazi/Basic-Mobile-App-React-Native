@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
+  ScrollView,
 } from "react-native";
 import KeyboardAvoidingView from "react-native/Libraries/Components/Keyboard/KeyboardAvoidingView";
 import Task from "./components/Task";
@@ -28,21 +29,32 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* Today's Tasks */}
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
+      {/* Added this scroll view to enable scrolling when list gets longer than the page */}
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+        keyboardShouldPersistTaps="handled"
+      >
+        {/* Today's Tasks */}
+        <View style={styles.tasksWrapper}>
+          <Text style={styles.sectionTitle}>Today's tasks</Text>
 
-        <View style={styles.items}>
-          {/* List of all the tasks */}
-          {taskItems.map((item, index) => {
-            return (
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item}></Task>
-              </TouchableOpacity>
-            );
-          })}
+          <View style={styles.items}>
+            {/* List of all the tasks */}
+            {taskItems.map((item, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => completeTask(index)}
+                >
+                  <Task text={item}></Task>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </View>
-      </View>
+      </ScrollView>
 
       {/* Write a task */}
       <KeyboardAvoidingView
